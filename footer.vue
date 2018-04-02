@@ -1,0 +1,138 @@
+<template>
+    <footer v-if="footerBanner" v-bind:style="{ backgroundImage: 'url(' + footerBanner.image_url + ')' }">
+        <div class="newsletter_subscription hidden_phone">
+            <div class="newsletter_content_container">
+                <h3 class="caps hidden_phone">{{$t("footer.newsletter")}}</h3>
+                <h1 class="caps hidden_phone">{{$t("footer.subscription")}}</h1>
+                <h3 class="newsletter_desc caps hidden_phone">{{$t("footer.newsletter_desc")}}</h3>
+                <div id="newsletter_form">
+                    <label for="fieldEmail" style="display:none"></label>
+                    <input id="fieldEmail" name="cm-tkyhii-tkyhii" class="form-control" type="email" v-model="newsletter_email" :placeholder="$t('footer.enter_email')" required/> 
+                    <router-link data-i18n="general.submit" :to="'/newsletter?email='+ newsletter_email">
+                        <div class="newsletter_btn animated_btn">{{$t("footer.subscribe")}}</div>
+                    </router-link>
+                    <span id="success_subscribe" class="hidden_now">{{$t("footer.subscribe_thankyou")}}</span>
+                </div>
+            </div>
+        </div>
+		<div class="footer">
+			<div class="site_container">
+			    <div class="row footer_logo">
+			        <div class="col-md-3 center-block">
+			            <div class="property_logo">
+					        <router-link to="/">
+					            <img src="//codecloud.cdn.speedyrails.net/sites/5ac289826e6f647fbaa30000/image/png/1519154972000/mm_logo.png" alt="Property Logo"/>
+				            </router-link>
+				        </div>    
+			        </div>
+			        <div class="col-xs-12 visible_phone">
+			            <div class="row">
+			                <div class="col-xs-4">
+			                    <div class="language_select">
+					                <span @click="changeLocale('en-ca')">EN</span> | <span @click="changeLocale('fr-ca')">FR</span>
+				                </div>    
+			                </div>
+			                <div class="col-xs-8">
+			                    <div class="header_search_container">
+                			        <search-component v-model="search" :list="processedStores" :suggestion-attribute="suggestionAttribute" :placeholder="$t('header.search')" @select="onOptionSelect">
+                                        <template slot="item" scope="option">
+                                            <article class="media">
+                                                <p>{{ option.data.name }}</p>
+                                            </article>
+                                        </template>
+                                    </search-component>
+                                </div>
+			                </div>
+			            </div>
+			        </div>
+			        <div class="col-md-6">
+			            <nav id="footer_nav">
+    						<ul>
+    						    <li v-for="item in footer_menu_items" class="menu_item">
+    						        <router-link :to="item.href">{{$t(item.name)}}</router-link>
+    						    </li>
+    						</ul>
+    					</nav>    
+			        </div>
+			        <div class="col-md-3">
+			            <div class="social_icons">
+                            <span v-for="item in social_media">
+                                <a :href="item.url" target="_blank">
+                                    <i :class="item.iconClass" aria-hidden="true"></i>
+                                </a>
+                            </span>
+                        </div>    
+			        </div>
+			    </div>
+				<div class="footer_terms">
+					<p>&copy; {{copyright_year}} <span class="caps">{{property.name}}</span> {{$t("footer.all_rights")}} <span class="hidden_phone">|</span><br class="visible_phone"/><span> {{$t("footer.powered_by")}} <a href="//www.mallmaverick.com" target="_blank">Mall Maverick</a></span></p>
+				</div>
+			</div>
+		</div>
+    </footer>
+</template>
+
+<script>
+    define(["Vue", "vuex", "moment", "moment-timezone", "vue-moment", "vue!search-component"], function (Vue, Vuex, moment, tz, VueMoment, SearchComponent) {
+        return Vue.component("footer-component", {
+            template: template, // the variable template will be injected,
+            data: function data() {
+                return {
+                    footerBanner: null,
+                    suggestionAttribute: 'name',
+                    search: '',
+                    newsletter_email: "",
+                }
+            },
+            props:['footer_menu_items', 'social_media'],
+            created() {
+                this.loadData().then(response => {
+                    this.dataLoaded = true;
+                    
+                    var temp_repo = this.findRepoByName('Footer Banner');
+                    if(temp_repo) {
+                        this.footerBanner = temp_repo.images[0];
+                    }
+                });
+            },
+            computed: {
+                ...Vuex.mapGetters([
+                    'property',
+                    'findRepoByName',
+                    'processedStores'
+                ]),
+                locale: {
+                    get () {
+                        return this.$store.state.locale
+                    },
+                    set (value) {
+                        this.$store.commit('SET_LOCALE', { lang: value })
+                    }
+                },
+                copyright_year() {
+                    return moment().year();
+                }
+            },
+            methods: {
+                loadData: async function() {
+                    try {
+                        let results = await Promise.all([this.$store.dispatch("getData", "repos")]);
+                    } catch (e) {
+                        console.log("Error loading data: " + e.message);
+                    }
+                },
+                changeLocale: function(val) {
+                    // this will update the data store, which in turn will trigger the watcher to update the locale in the system
+                    this.locale = val; 
+                },
+                onOptionSelect(option) {
+                    console.log('Selected option:', option);
+                    this.$nextTick(function() {
+                        this.search = ""
+                    });
+                    this.$router.push("/stores/" + option.slug);
+                }
+            }
+        });
+    });
+</script>
