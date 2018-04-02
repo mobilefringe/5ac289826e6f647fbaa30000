@@ -54,7 +54,7 @@
     						</ul>
     					</nav>    
 			        </div>
-			        <div class="col-md-3">
+			        <div class="col-md-2">
 			            <div class="social_icons">
                             <span v-for="item in social_media">
                                 <a :href="item.url" target="_blank">
