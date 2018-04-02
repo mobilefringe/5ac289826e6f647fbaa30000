@@ -35,12 +35,12 @@
                             					<p v-else>{{ feature.name_2 }}</p>
                             					<h3 v-if="locale=='en-ca'">{{ feature.description }}</h3>
                             					<h3 v-else>{{ feature.description_2 }}</h3>
-                            					<div v-if="lastItem(feature)" class="feature_item_more">
+                            					<div class="feature_item_more"> <!--  v-if="lastItem(feature)" -->
                             					    {{ $t("home_page.subscribe") }}    
                             					</div>
-                            					<div v-else class="feature_item_more">
-                            					    {{ $t("home_page.read_more") }}    
-                            					</div>
+                            					<!--<div v-else class="feature_item_more">-->
+                            					<!--    {{ $t("home_page.read_more") }}    -->
+                            					<!--</div>-->
                             				</div>
                             			</div>
                             		</a>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div>
-        		      <h3 class="home_page_title caps">{{$t("home_page.our_feed")}}</h3>
+        		        <h3 class="home_page_title caps">{{$t("home_page.our_feed")}}</h3>
         		    </div>
         		    <div class="insta-feed-container">
                         <div class="insta-feed-image " v-for="(item, index) in instaFeed">
@@ -175,12 +175,12 @@
                         } else if ( _.includes([5], key) ){
                             value.text_class = "add_black";
                             value.border = " ";
-                            value.last_item = true;
+                            // value.last_item = true;
                         } else {
                             value.masonry_class = " ";
                             value.text_class = " ";
                             value.border = " ";
-                            value.last_item = false;
+                            // value.last_item = false;
                         }
                     });
                     return features;
