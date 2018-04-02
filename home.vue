@@ -35,12 +35,12 @@
                             					<p v-else>{{ feature.name_2 }}</p>
                             					<h3 v-if="locale=='en-ca'">{{ feature.description }}</h3>
                             					<h3 v-else>{{ feature.description_2 }}</h3>
-                            					<div class="feature_item_more"> <!--  v-if="lastItem(feature)" -->
-                            					    {{ $t("home_page.subscribe") }}    
-                            					</div>
-                            					<!--<div v-else class="feature_item_more">-->
-                            					<!--    {{ $t("home_page.read_more") }}    -->
+                            					<!--<div v-if="lastItem(feature)" class="feature_item_more">-->
+                            					<!--    {{ $t("home_page.subscribe") }}    -->
                             					<!--</div>-->
+                            					<div class="feature_item_more"> <!-- v-else -->
+                            					    {{ $t("home_page.read_more") }}    
+                            					</div>
                             				</div>
                             			</div>
                             		</a>
