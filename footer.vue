@@ -45,7 +45,7 @@
 			                </div>
 			            </div>
 			        </div>
-			        <div class="col-md-6">
+			        <div class="col-md-7">
 			            <nav id="footer_nav">
     						<ul>
     						    <li v-for="item in footer_menu_items" class="menu_item">
