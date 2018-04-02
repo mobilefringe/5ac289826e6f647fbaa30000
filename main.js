@@ -146,6 +146,10 @@ require(["Vue", "vuex", "vue2-filters", "vue_router", "routes", "datastore", "vu
                         href: "/pages/stlaurent-terms-conditions",
                     },
                     {
+                        name: "nav.disruptions",
+                        href: "/pages/stlaurent-temporary-disruptions",
+                    },
+                    {
                         name: "nav.jobs",
                         href: "/jobs",
                     }
