@@ -150,8 +150,8 @@ require(["Vue", "vuex", "vue2-filters", "vue_router", "routes", "datastore", "vu
                         href: "/pages/stlaurent-temporary-disruptions",
                     },
                     {
-                        name: "nav.jobs",
-                        href: "/jobs",
+                        name: "nav.press",
+                        href: "/pages/stlaurent-press",
                     }
                 ],
                 social_media: [
