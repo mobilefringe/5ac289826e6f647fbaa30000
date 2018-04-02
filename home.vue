@@ -232,11 +232,11 @@
                 //     this.show_popup = false;
                 //     document.getElementById('popup_backdrop').style.display = "none";
                 // },
-                lastItem(feature){
-                    if(feature.last_item == true){
-                        return true
-                    }
-                }
+                // lastItem(feature){
+                //     if(feature.last_item == true){
+                //         return true
+                //     }
+                // }
             }
         })
     })
