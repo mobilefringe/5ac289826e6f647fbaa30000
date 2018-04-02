@@ -562,6 +562,9 @@ footer {
             }
         }
     }
+    .social_icons {
+        float: right;
+    }
 }
 .footer_conduct p, .footer_terms p {
     font-size: 0.75rem;
