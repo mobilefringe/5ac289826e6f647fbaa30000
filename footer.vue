@@ -18,7 +18,7 @@
 		<div class="footer">
 			<div class="site_container">
 			    <div class="row footer_logo">
-			        <div class="col-md-3 center-block">
+			        <div class="col-md-2 center-block">
 			            <div class="property_logo">
 					        <router-link to="/">
 					            <img src="//codecloud.cdn.speedyrails.net/sites/5ac289826e6f647fbaa30000/image/png/1519154972000/mm_logo.png" alt="Property Logo"/>
@@ -45,7 +45,7 @@
 			                </div>
 			            </div>
 			        </div>
-			        <div class="col-md-7">
+			        <div class="col-md-8">
 			            <nav id="footer_nav">
     						<ul>
     						    <li v-for="item in footer_menu_items" class="menu_item">
