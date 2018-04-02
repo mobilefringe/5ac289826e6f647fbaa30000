@@ -29,16 +29,12 @@
                         	    <div class="feature_item_container">
                         	        <a :href="feature.url">
                             			<img :src="feature.image_url" alt="name">
-                            			<div class="feature_item_info">
+                            			<div class="feature_item_info" v-if="feature.name && feature.description ">
                             				<div :class="'feature_item_content ' + feature.text_class + feature.border">
-                            				    <span v-if="feature.name || feature.name_2">
-                                					<p v-if="locale=='en-ca'">{{ feature.name }}</p>
-                                					<p v-else>{{ feature.name_2 }}</p>
-                                				</span>
-                                				<span v-if="feature.description || feature.description_2">
-                                					<h3 v-if="locale=='en-ca'">{{ feature.description }}</h3>
-                                					<h3 v-else>{{ feature.description_2 }}</h3>
-                                				</span>
+                            					<p v-if="locale=='en-ca'">{{ feature.name }}</p>
+                            					<p v-else>{{ feature.name_2 }}</p>
+                            					<h3 v-if="locale=='en-ca'">{{ feature.description }}</h3>
+                            					<h3 v-else>{{ feature.description_2 }}</h3>
                             					<div v-if="lastItem(feature)" class="feature_item_more">
                             					    {{ $t("home_page.subscribe") }}    
                             					</div>
