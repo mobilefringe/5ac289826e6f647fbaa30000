@@ -206,12 +206,12 @@
                         } else if ( _.includes([5], key) ){
                             value.text_class = "add_black";
                             value.border = " ";
-                            value.last_item = true;
+                            // value.last_item = true;
                         } else {
                             value.masonry_class = " ";
                             value.text_class = " ";
                             value.border = " ";
-                            value.last_item = false;
+                            // value.last_item = false;
                         }
                     });
                     features = _.sortBy(features, [function(o) { return o.mobile_order; }]);
