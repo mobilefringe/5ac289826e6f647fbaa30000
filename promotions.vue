@@ -76,9 +76,7 @@
                     if(temp_repo) {
                         this.pageBanner = temp_repo.images[0];
                     }
-                    console.log(this.pageBanner);
                     this.promos = this.promotions;
-                    console.log(this.promos);
                 });
             },
             computed: {
