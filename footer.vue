@@ -1,5 +1,5 @@
 <template>
-    <footer v-bind:style="{ backgroundImage: 'url(' + footerBanner.image_url + ')' }">
+    <footer v-if="footerBanner" v-bind:style="{ backgroundImage: 'url(' + footerBanner.image_url + ')' }">
         <div class="newsletter_subscription hidden_phone">
             <div class="newsletter_content_container">
                 <h3 class="caps hidden_phone">{{$t("footer.newsletter")}}</h3>
@@ -78,7 +78,7 @@
             template: template, // the variable template will be injected,
             data: function data() {
                 return {
-                    footerBanner: null,
+                    footerBanner: {},
                     suggestionAttribute: 'name',
                     search: '',
                     newsletter_email: "",
@@ -91,7 +91,8 @@
                     
                     // var temp_repo = this.findRepoByName('Footer Banner');
                     // if(temp_repo) {
-                    //     this.footerBanner = temp_repo.images[0];
+                    
+                        this.footerBanner.image_url = "https://via.placeholder.com/1920x500";
                     // }
                 });
             },
